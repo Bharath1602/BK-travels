@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vehicle booking</title>
+    <link rel="stylesheet" href="bktravels.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!---we had linked our css file----->
+    <style>
+      #snackbar {
+        visibility: hidden;
+        min-width: 250px;
+        margin-left: -125px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 2px;
+        padding: 16px;
+        position: fixed;
+        z-index: 1;
+        left: 50%;
+        bottom: 30px;
+        font-size: 17px;
+      }
+      
+      #snackbar.show {
+        visibility: visible;
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      }
+      
+      @-webkit-keyframes fadein {
+        from {bottom: 0; opacity: 0;} 
+        to {bottom: 30px; opacity: 1;}
+      }
+      
+      @keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 30px; opacity: 1;}
+      }
+      
+      @-webkit-keyframes fadeout {
+        from {bottom: 30px; opacity: 1;} 
+        to {bottom: 0; opacity: 0;}
+      }
+      
+      @keyframes fadeout {
+        from {bottom: 30px; opacity: 1;}
+        to {bottom: 0; opacity: 0;}
+      }
+	  
+	  
+	  
+	  
+	  #myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: red; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+}
+
+#myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+
+/* Style the header */
+.header {
+  padding: 10px 16px;
+  background: #555;
+  color: #f1f1f1;
+}
+
+/* Page content */
+.content {
+  padding: 16px;
+}
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+  padding-top: 102px;
+}
+
+
+
+      </style>
+</head>
+
+<body bgcolor="cyan" >
+ <div class="header" id="myHeader">
+    <div class="glow" style="font-size:80px;font-family:algerian;color:white;text-align:left;">BK TRAVELS</div></div>
+
+ <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+ 
+		 <!-- Slideshow container -->
+<div class="slideshow-container">
+  
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides fade">
+    <div class="numbertext">1 / 3</div>
+    <img src="r8.jpg" style="width:100%">
+    <div class="centered" style="font-size:100px;font-family:algerian;color:orange;text-align:left;">Don'T Be A Tourist, Be A Traveler.Every Day Is Different</div>
+	<div class="header" id="myHeader">
+    <div class="glow" style="font-size:80px;font-family:algerian;color:white;text-align:left;">BK TRAVELS</div></div>
+	<div class="center-right" style="font-size:40px;font-family:algerian;color:white;text-align:left;"> >>SCROLL DOWN<< </div>
+   <button class='loginbtn' onclick="document.getElementById('login-           form').style.display='block'" style="width:auto;" ><a href="http://localhost/ABCD/"> Login</button></a>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">2 / 3</div>
+    <img src="r5.jpg" style="width:100%">
+    <div class="centered" style="font-size:100px;font-family:algerian;color:palegreen;text-align:left;">Explore, Journey, Discover, Adventure. </div>
+		<div class="header" id="myHeader">
+       <div class="glow" style="font-size:80px;font-family:algerian;color:white;text-align:left;">BK TRAVELS</div></div>
+		<div class="center-right" style="font-size:40px;font-family:algerian;color:white;text-align:left;"> >>SCROLL DOWN<< </div>
+    <button class='loginbtn' onclick="document.getElementById('login-           form').style.display='block'" style="width:auto;" ><a href="http://localhost/ABCD/"> Login</button></a>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">3 / 3</div>
+    <img src="e1.jpg" style="width:100%">
+    <div class="centered" style="font-size:100px;font-family:algerian;color:cyan;text-align:left;">The journey matters more than the destination </div>
+		<div class="header" id="myHeader">
+      <div class="glow" style="font-size:80px;font-family:algerian;color:white;text-align:left;">BK TRAVELS</div></div>
+	<div class="center-right" style="font-size:40px;font-family:algerian;color:white;text-align:left;"> >>SCROLL DOWN<< </div>
+    <button class='loginbtn' onclick="document.getElementById('login-           form').style.display='block'" style="width:auto;" ><a href="http://localhost/ABCD/"> Login</button></a>
+  </div>
+
+  <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+        
+ <div class="header" id="myHeader">
+    <div class="glow" style="font-size:80px;font-family:algerian;color:white;text-align:left;">BK TRAVELS</div></div>
+
+      <hr><h1 style="font-size:30;text-align:center;font-family:algerian;color:red;">TRAVEL ARRANGEMENTS</hr></h1>
+      <hr><P style="font-size:50;text-align:center;font-family:times new roman;"> <span style="color:green"> </P></span><br>
+
+   
+<div class="row">
+  <div class="column">
+    <img src="a3.jpg" alt="Snow" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="a1.jpg" alt="Forest" style="width:90% ">
+  </div>
+  <div class="column">
+    <img src="a2.jpg" alt="Mountains" style="width:100%">
+  </div>
+</div>
+
+      <hr><h1 style="font-size:30;text-align:center;font-family:algerian;color:red;">FAVOURITE SPOTS</hr></h1>
+      <hr><P style="font-size:50;text-align:center;font-family:times new roman;"> <span style="color:green"> </P></span><br>
+	
+	<IMG src="b1.jpg" align=right border=5px width=50% height=100% >
+<h3  style="font-size:40px;font-family:algerian;color:orange;">KERALA TOURISM<h3>
+
+ <p align=left style="font-size:20px;text-align:left;font-family:algerian;color:;"><mark>List of Top Most Visited Tourist Destinations of Kerala</mark><br><br>
+<span style="color:blue">Alleppey: </span> <br>Kerala’s favourite backwater tourist destination, Alleppey is famed for offering an incredible experience of staying and cruising in a traditional houseboat.<br><br>
+
+<span style="color:blue">Munnar: </span><br>Adorned with myriad tea estates and rolling hills, Munnar is without a doubt the best hill station in Kerala. It is a must visit tourist place in Kerala for a relaxing holiday as well as relishing adventure activities.<br>
+<br>
+
+<span style="color:blue">Kochi: </span><br>A cosmopolitan city with a bustling port, Kochi is where the modern lifestyle meets the traditional one. The city is the perfect reflection of Kerala and has many experiences up its sleeves.<br><br>
+
+<span style="color:blue">Thekkady: </span> <br>Fringing the popular Periyar National Park, Thekkady is a hill station in Kerala that attracts many nature and wildlife lovers. It is one of the best places to enjoy the scenic beauty of Kerala.<br><br>
+
+<span style="color:blue">Thrissur: </span> <br>The cultural capital, Thrissur does not need an introduction. From drawing a large crowd on its Temple Festival (Thrissur Pooram) to being an abode to several cultural centres, the city is a must-visit in Kerala.<br><br>
+
+<span style="color:blue">Kovalam: </span> <br>A small coastal town with some of the best beaches of Kerala, Kovalam is a place where you get to enjoy sunbathing, swimming, herbal body toning massages, special cultural programmes and catamaran cruising.<br><br>
+
+<span style="color:blue">Wayanad: </span><br>Dotted with camping sites, trekking trails and gorgeous waterfalls, Wayanad is a peaceful and picturesque hill station that is perfect for holiday in Kerala.<br><br>
+<span style="color:blue">Thekkady: </span> <br>Fringing the popular Periyar National Park, Thekkady is a hill station in Kerala that attracts many nature and wildlife lovers. It is one of the best places to enjoy the scenic beauty of Kerala.<br><br>
+<hr>
+<br>
+<IMG src="c1.jpg" align=left border=5px width=50% height=100% >
+<h3  style="font-size:40px;font-family:algerian;color:orange;">TAMILNADU TOURISM<h3>
+
+ <p align=left style="font-size:20px;text-align:left;font-family:algerian;color:;"><mark>List of Top Most Visited Tourist Destinations of TamilNadu</mark><br><br>
+<span style="color:blue">Chennai:</span><br>Chennai, the capital of Tamil Nadu, is known as the Gateway to South India. It's a sprawling and busy, yet conservative, city with deep traditions that are yet to give way to the growing foreign influence there.
+
+.<br><br>
+
+<span style="color:blue">Mamallapuram: </span> <br>find one of the top beaches on India's east coast—Mahabalipuram (also known as Mamallapuram). The beach has a thriving backpacker and surfing scene but is also popular with tourists who come to relax at the resorts there. It's known for its stone sculpture industry,  Other attractions are the Shore Temple, Five Rathas , and Arjuna's Penance <br><br>
+<span style="color:blue">Madurai: </span><br>Ancient Madurai in Tamil Nadu is home to the most impressive and important temple in south India --the Meenakshi Temple. If you only see one south Indian temple, the Meenakshi Temple should be it. The city of Madurai is more than 4,000 years old and has remained a major center of Tamil culture and learning.<br><br>
+
+<span style="color:blue">Thanjavur: </span> <br>Thanjavur is best known for its astonishing Brihadeshwara Temple (known as the Big Temple), a UNESCO World Heritage Site made out of granite by Chola king Raja Raja I in the 11th century. It's an engineering marvel. However, the town is also a distinguished hub of arts and crafts in South India. <br><br>
+
+<span style="color:blue">Pondicherry: </span><br> Pondicherry, a separate union territory on the east coast of Tamil Nadu, is not really a place you'd expect to find in India. It was a former 18th century French colony and still retains a distinctly French flavor. Those who feel in need of a break from India will enjoy the taste of French culture there and the relaxed atmosphere..<br><br>
+
+<span style="color:blue">Kumbakonam and Gangaikonda Cholapuram: </span><br> Kumbakonam and Gangaikonda Cholapuram, northeast of Thanjavur, have two Great Living Chola Temples that are part of the UNESCO World Heritage listing too. The royal temple at Gangaikonda Cholapuram was built not long after
+Thanjavur's Big Temple in the 11th century, when Rajendra Chola I relocated the Chola capital there in celebration of victory. <br><br>
+
+<hr>
+<br>
+<IMG src="c2.jpg" align=right border=5px width=50% height=100% >
+<h3  style="font-size:40px;font-family:algerian;color:orange;">TAMILNADU TOURISM<h3>
+
+ <p align=left style="font-size:20px;text-align:left;font-family:algerian;color:;"><mark>List of Top Most Visited Tourist Destinations of TamilNadu</mark><br><br>
+<span style="color:blue">Pangong:</span><br>Pangong Tso lake found fame thanks to Aamir Khan's 3 Idiots so without a doubt, this place deserves to be on your itinerary of places to visit in Ladakh. Pack a sweet picnic basket and head with your folks to the lake and maybe even camp next to it as you enjoy every moment of peace and tranquillity.
+.<br><br>
+
+<span style="color:blue">Thiksey Monastery: </span><br> This 12-storey complex hosts over 500 monks and is considered to be one of the most beautiful Buddhist monasteries in all of Ladakh. For Ladakh sightseeing, Thiksey Gompa will enlighten you with knowledge about some of the Buddhist culture, lifestyle, scriptures, statues and even paintings. <br><br>
+<span style="color:blue">Khardung-la Pass: </span><br>Rent a Himalayan and go nuts on the road to Khardung-la pass. The pass is a gateway to the Nubra as well as Shyok valley and is one of the most elevated motorable terrains worldwide. Interestingly, the roads were opened in 1988 for vehicles to pass through. Cruisers and Himalayans considered to be the best means to travel here, to experience the rugged beauty of the journey.<br><br>
+
+<span style="color:blue">Markha Valley: </span><br> If camping is your thing then you won't find a better spot than at the Markha valley in Ladakh! You can trek up to some amazing sites such as Markha, Skiu and Hankar for starters. Once you reach the summit, you can unwind with some lovely tents, bonfire and make friends with strangers. Quite the deal, don't you think? <br><br>
+
+<span style="color:blue">Nubra Valley: </span><br> Famous for its white sand deserts and double-humped camels, Nubra Valley is certainly one of the best places to visit in Ladakh. Not just the scenic slopes of Karakoram range but also the confluence of Shyak and Siachen rivers is what makes Nubra valley an exquisite voyage!<br><br>
+
+<span style="color:blue">Tso Moriri lake: </span><br>
+    Imagine a sparkling blue lake nestled in the midst of rugged surroundings. That, my friends, is Tso Moriri lake. Being 15000 ft above sea level in a rather rough environment is this tiny paradise. The place is often not considered ideal by many tourists due to the high altitude at which it stands proudly. However, with its impeccably undisturbed ambiance, it would be shame to miss this place. <br><br>
+
+<hr>
+
+
+
+<hr><h1 style="font-size:30;text-align:center;font-family:algerian;color:red;">MAKE YOUR TRIP MORE FUN WITH ADVENTURES</hr></h1>
+      <hr><P style="font-size:50;text-align:center;font-family:times new roman;"> <span style="color:green"> </P></span><br>
+      <div class="row">
+        <div class="column">
+          <img src="e1.jpg" alt="Snow" style="width:100%; height: 120%;">
+        </div>
+        <div class="column">
+          <img src="e2.jpg" alt="Forest" style="width:100%">
+        </div>
+        <div class="column">
+          <img src="e3.jpg" alt="Mountains" style="width:130%">
+        </div>
+      </div>
+
+    
+
+<div class="row">
+  <div class="column">
+    <img src="e4.jpg" alt="Snow" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="e5.jpg" alt="Forest" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="e6.jpg" alt="Mountains" style="width:100%;height: 50%;">
+  </div>
+</div>
+
+
+
+
+
+
+<div class="about-section">
+  <h1  style="font-size:30;text-align:center;font-family:algerian;color:red;">About Us Page</h1>
+  <p>BK TOURS AND TRAVELS! </p>
+  <p>WE MAKE YOUR TRIP ADVENTUROUS & UNFORGETTABLE</p>
+</div>
+
+<h2 style="text-align:center">Our Team</h2>
+<div class="row">
+  <div class="column">
+    <div class="card">
+    <center>  <img src="d1.jpg" alt="Jane" style="width:50%"></center>
+      <div class="container">
+        <h2>BK</h2>
+        <p class="title">CEO & Founder</p>
+        <p>Iam Proud to be a Travel Agent to assist my clients,Who many times become my Friends</p>
+        <p>bk@example.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+        <center>  <img src="d2.jpg" alt="Mike" style="width:50%"></center>
+      <div class="container">
+        <h2>Cibi</h2>
+        <p class="title">Art Director</p>
+        <p>Iam Proud to be a Travel Agent to assist my clients,Who many times become my Friends</p>
+        <p>cibi@example.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+        <center>  <img src="d3.jpg" alt="John" style="width:50%"></center>
+      <div class="container">
+        <h2>Abinav</h2>
+        <p class="title">Designer</p>
+        <p>Iam Proud to be a Travel Agent to assist my clients,Who many times become my Friends</p>
+        <p>abinav@example.com</p>
+        <p> <a href=''><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+<BR><BR>
+<CENTER>
+<HR><h1 style="font-size:30px;text-align:center;font-family:algerian;color:red;"> FEEDBACK FORM</H1></CENTER></p><HR>
+ 
+  <center>
+  <div class="container">
+    <form action="/action_page.php">
+     
+      <input type="text" id="fname" name="firstname" placeholder="ABOUT">
+  
+     
+      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+  <BR>
+     <button onclick="myFunction()" style="color: rgb(132, 15, 228); font-size: 20px; font-family: algerian;">SUBMIT</button></center>
+<div id="snackbar">Some text some message..</div>
+
+<script>
+  function myFunction() {
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
+  </script>
+  <script> var slideIndex = 1;
+   showSlides(slideIndex);
+   
+   // Next/previous controls
+   function plusSlides(n) {
+     showSlides(slideIndex += n);
+   }
+   
+   // Thumbnail image controls
+   function currentSlide(n) {
+     showSlides(slideIndex = n);
+   }
+   
+   function showSlides(n) {
+     var i;
+     var slides = document.getElementsByClassName("mySlides");
+     var dots = document.getElementsByClassName("dot");
+     if (n > slides.length) {slideIndex = 1}
+     if (n < 1) {slideIndex = slides.length}
+     for (i = 0; i < slides.length; i++) {
+         slides[i].style.display = "none";
+     }
+     for (i = 0; i < dots.length; i++) {
+         dots[i].className = dots[i].className.replace(" active", "");
+     }
+     slides[slideIndex-1].style.display = "block";
+     dots[slideIndex-1].className += " active";
+   }
+   var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+
+//Get the button:
+mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+
+// When the user scrolls the page, execute myFunction
+window.onscroll = function() {myFunction()};
+
+// Get the header
+var header = document.getElementById("myHeader");
+
+// Get the offset position of the navbar
+var sticky = header.offsetTop;
+
+// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+
+
+
+  </script> 
+  
+<div class="footer">
+         
+    <p style="font-size:40px;text-align:center;font-family:algerian;color:rgb(25, 60, 218);"">BK TOURS AND TRAVELS!</p>	<br>
+    <p style=font-size:20px;font-family:algerian;color:palegreen;text-align:center>Explore, Journey, Discover, Adventure. Making your heart want to return. Don'T Be A Tourist, Be A Traveler. Every Day Is Different.</hr></p>
+   <br>
+    <a href="#" class="fa fa-facebook"></a>
+    <a href="#" class="fa fa-twitter"></a>
+    <a href="#" class="fa fa-google"></a>
+    <br> <br>	<br>
+    Copyright © 2021 BKTravels. All rights reserved.
+</div>
+</center>
+
+</body>
+</html>
